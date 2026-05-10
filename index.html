@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Brunch El Nido — All-day breakfast café in El Nido, Palawan. Sangrias, mimosas, eggs Benedict, lox bagels & Filipino favorites. Open until 10 PM.">
+  <meta property="og:title" content="Brunch El Nido — Sangrias & Mimosas">
+  <meta property="og:description" content="Your favorite all-day brunch spot in El Nido, Palawan. International comfort food, creative drinks & tropical vibes.">
+  <meta property="og:image" content="assets/SaveClip.App_464681148_17980136210777075_7725377520029703684_n.jpg">
+  <title>Brunch El Nido — Sangrias & Mimosas | El Nido, Palawan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       VARIABLES
+    ============================================================ */
+    :root {
+      --cream:        #FAF6F0;
+      --sand:         #EDE4D8;
+      --sand-dark:    #D9CCBC;
+      --terracotta:   #C07A58;
+      --terracotta-h: #A8613D;
+      --teal:         #5B9E99;
+      --charcoal:     #3D3835;
+      --dark:         #1A1614;
+      --white:        #FFFFFF;
+      --muted:        #7A746F;
+      --border:       rgba(61,56,53,0.1);
+      --gold:         #F4C08A;
+
+      --font-serif:  'Cormorant Garamond', Georgia, serif;
+      --font-script: 'Dancing Script', cursive;
+      --font-sans:   'Inter', system-ui, sans-serif;
+
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.07);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.11);
+      --shadow-lg: 0 24px 64px rgba(0,0,0,0.14);
+      --radius:    14px;
+      --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      line-height: 1.65;
+    }
+    img { display: block; width: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: var(--font-sans); cursor: pointer; border: none; background: none; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
+    .label {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 14px;
+    }
+    .headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--dark);
+    }
+    .headline em { font-style: italic; color: var(--terracotta); }
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: all 0.3s var(--ease);
+    }
+    .btn-primary { background: var(--terracotta); color: #fff; }
+    .btn-primary:hover { background: var(--charcoal); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-dark { background: var(--dark); color: #fff; }
+    .btn-dark:hover { background: var(--terracotta); transform: translateY(-2px); }
+    .btn-outline-light {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(6px);
+    }
+    .btn-outline-light:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+    .btn-ghost-light {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .btn-ghost-light:hover { background: #fff; color: var(--dark); border-color: #fff; }
+
+    /* ============================================================
+       REVEAL ANIMATION
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      padding: 22px 0;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .navbar.scrolled {
+      background: rgba(250,246,240,0.96);
+      backdrop-filter: blur(14px);
+      padding: 14px 0;
+      box-shadow: 0 1px 28px rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .nav-brand img {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .nav-brand-name {
+      font-family: var(--font-script);
+      font-size: 1.45rem;
+      color: #fff;
+      transition: color 0.3s;
+      line-height: 1;
+    }
+    .navbar.scrolled .nav-brand-name { color: var(--dark); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.88);
+      position: relative;
+      transition: color 0.25s;
+    }
+    .navbar.scrolled .nav-links a { color: var(--charcoal); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--terracotta);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover::after, .nav-links a:focus::after { width: 100%; }
+    .nav-links a:hover { color: #fff; }
+    .navbar.scrolled .nav-links a:hover { color: var(--terracotta); }
+    .nav-cta {
+      background: var(--terracotta) !important;
+      color: #fff !important;
+      padding: 9px 22px;
+      border-radius: 100px;
+      font-size: 0.79rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.3s var(--ease);
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--charcoal) !important; color: #fff !important; transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      transition: all 0.3s var(--ease);
+      border-radius: 2px;
+    }
+    .navbar.scrolled .hamburger span { background: var(--dark); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease);
+    }
+    .mobile-drawer.open { opacity: 1; pointer-events: all; }
+    .mobile-drawer a {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+      padding: 8px 0;
+    }
+    .mobile-drawer a:hover { color: var(--gold); }
+    .mobile-drawer-contact {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+    }
+    .mobile-drawer-contact a {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.4) !important;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      height: 100vh;
+      min-height: 640px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/SaveClip.App_464681148_17980136210777075_7725377520029703684_n.jpg') center/cover no-repeat;
+      transform: scale(1.08);
+      transition: transform 10s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(18,13,10,0.55) 0%,
+        rgba(18,13,10,0.35) 45%,
+        rgba(18,13,10,0.70) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 7px 20px;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      animation: fadeDown 0.8s var(--ease) both;
+    }
+    .hero-tag .live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #6ED87B;
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+
+    .hero-script {
+      font-family: var(--font-script);
+      font-size: clamp(1.1rem, 2.5vw, 1.65rem);
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 6px;
+      animation: fadeDown 0.9s var(--ease) 0.1s both;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      animation: fadeDown 1s var(--ease) 0.2s both;
+    }
+    .hero-title .accent { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+      animation: fadeDown 1s var(--ease) 0.3s both;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1s var(--ease) 0.4s both;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: fadeIn 1.8s var(--ease) 1s both;
+    }
+    .scroll-wire {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: wireAnim 1.8s ease-in-out infinite;
+    }
+    @keyframes wireAnim { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.4);opacity:0.3} }
+
+    /* ============================================================
+       STATS BAR
+    ============================================================ */
+    .stats-bar { background: var(--dark); }
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat {
+      text-align: center;
+      padding: 30px 20px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-val {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-lbl {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    .about { padding: 110px 0; overflow: hidden; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visuals { position: relative; }
+    .about-img-main {
+      border-radius: 18px;
+      overflow: hidden;
+      height: 520px;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-img-main img { height: 100%; }
+    .about-img-float {
+      position: absolute;
+      bottom: -36px; right: -36px;
+      width: 210px; height: 260px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 6px solid var(--cream);
+      box-shadow: var(--shadow-lg);
+    }
+    .about-img-float img { height: 100%; }
+
+    .about-text { }
+    .about-text .lead { margin: 18px 0 30px; }
+    .perks { display: flex; flex-direction: column; gap: 18px; margin-bottom: 38px; }
+    .perk {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .perk-icon {
+      width: 44px; height: 44px;
+      background: var(--sand);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .perk-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 3px;
+    }
+    .perk-text span {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       FEATURES STRIP
+    ============================================================ */
+    .features {
+      padding: 70px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .feat {
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: var(--radius);
+      transition: all 0.3s var(--ease);
+    }
+    .feat:hover { background: #fff; box-shadow: var(--shadow-sm); }
+    .feat-icon { font-size: 2rem; margin-bottom: 14px; }
+    .feat-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .feat-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+
+    /* ============================================================
+       MENU
+    ============================================================ */
+    .menu-section { padding: 110px 0; background: var(--dark); }
+    .menu-header { text-align: center; margin-bottom: 56px; }
+    .menu-header .headline { color: #fff; }
+    .menu-header .label { color: rgba(255,255,255,0.4); }
+    .menu-header .lead { color: rgba(255,255,255,0.45); margin: 14px auto 0; text-align: center; }
+
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .tab {
+      padding: 9px 24px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.5);
+      transition: all 0.25s var(--ease);
+    }
+    .tab:hover, .tab.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #fff;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .menu-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.35s var(--ease);
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.13);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .menu-card-img {
+      height: 215px;
+      overflow: hidden;
+    }
+    .menu-card-img img {
+      height: 100%;
+      transition: transform 0.55s var(--ease);
+    }
+    .menu-card:hover .menu-card-img img { transform: scale(1.06); }
+    .menu-card-body { padding: 22px; }
+    .menu-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 7px;
+    }
+    .menu-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 7px;
+    }
+    .menu-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+    .menu-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .menu-price {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--gold);
+    }
+    .menu-badge {
+      font-size: 0.68rem;
+      padding: 4px 11px;
+      border-radius: 100px;
+      background: rgba(91,158,153,0.18);
+      color: var(--teal);
+      font-weight: 500;
+    }
+    .menu-cta { text-align: center; margin-top: 52px; }
+
+    /* ============================================================
+       GALLERY
+    ============================================================ */
+    .gallery-section { padding: 110px 0; }
+    .gallery-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .gallery-ig-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--terracotta);
+      border-bottom: 1px solid var(--terracotta);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .gallery-ig-link:hover { opacity: 0.7; }
+
+    .gallery-mosaic {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 14px;
+    }
+    .g-item {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s var(--ease); }
+    .g-item:hover img { transform: scale(1.06); }
+    .g-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(18,13,10,0);
+      transition: background 0.3s var(--ease);
+    }
+    .g-item:hover::after { background: rgba(18,13,10,0.22); }
+
+    .g-item:nth-child(1) { grid-column: span 4; grid-row: span 1; }
+    .g-item:nth-child(2) { grid-column: span 5; grid-row: span 2; }
+    .g-item:nth-child(3) { grid-column: span 3; grid-row: span 1; }
+    .g-item:nth-child(4) { grid-column: span 4; grid-row: span 1; }
+    .g-item:nth-child(5) { grid-column: span 3; grid-row: span 1; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.93);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    .lb-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      color: rgba(255,255,255,0.6);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .lb-close:hover { color: #fff; }
+
+    /* ============================================================
+       REVIEWS
+    ============================================================ */
+    .reviews-section { padding: 110px 0; background: var(--sand); }
+    .reviews-header { text-align: center; margin-bottom: 60px; }
+    .reviews-header .lead { margin: 14px auto 0; text-align: center; }
+    .rating-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .rating-big {
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .stars-row { color: #F4A623; font-size: 1.1rem; letter-spacing: 3px; }
+    .rating-count { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .review-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 30px;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s var(--ease);
+    }
+    .review-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .review-bigq {
+      position: absolute;
+      top: 18px; right: 22px;
+      font-family: var(--font-serif);
+      font-size: 4.5rem;
+      color: var(--sand-dark);
+      line-height: 1;
+      user-select: none;
+    }
+    .review-stars { color: #F4A623; font-size: 0.88rem; letter-spacing: 2.5px; margin-bottom: 14px; }
+    .review-text {
+      font-size: 0.91rem;
+      color: var(--charcoal);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 22px;
+    }
+    .review-foot {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+    .review-av {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .review-name { font-weight: 600; font-size: 0.88rem; color: var(--dark); }
+    .review-meta {
+      font-size: 0.76rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+      flex-wrap: wrap;
+    }
+    .g-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.7rem;
+    }
+    .g-badge svg { flex-shrink: 0; }
+
+    /* ============================================================
+       FIND US / CONTACT
+    ============================================================ */
+    .find-us { padding: 110px 0; }
+    .find-us-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .find-us-info {}
+    .find-us-info .lead { margin: 16px 0 32px; }
+
+    .contact-list { display: flex; flex-direction: column; gap: 22px; margin-bottom: 36px; }
+    .contact-row { display: flex; gap: 16px; align-items: flex-start; }
+    .c-icon {
+      width: 46px; height: 46px;
+      background: var(--sand);
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .c-detail strong {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .c-detail span, .c-detail a {
+      font-size: 0.96rem;
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+    .c-detail a:hover { color: var(--terracotta); }
+
+    .hours-box {
+      background: var(--sand);
+      border-radius: var(--radius);
+      padding: 26px;
+    }
+    .hours-heading {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: var(--charcoal); font-weight: 500; }
+    .hours-row .time { color: var(--terracotta); font-weight: 700; }
+    .open-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(110,216,123,0.12);
+      color: #2E7D32;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.77rem;
+      font-weight: 600;
+      margin-top: 18px;
+    }
+    .open-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #4CAF50;
+      animation: pulseDot 2s infinite;
+    }
+
+    .map-wrap {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      height: 520px;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; }
+
+    /* ============================================================
+       INSTAGRAM STRIP
+    ============================================================ */
+    .insta-section { padding: 90px 0; background: var(--dark); }
+    .insta-hd { text-align: center; margin-bottom: 44px; }
+    .insta-hd .headline { color: #fff; }
+    .insta-hd .label { color: rgba(255,255,255,0.35); }
+    .insta-follow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.88rem;
+      margin-top: 14px;
+      transition: color 0.2s;
+    }
+    .insta-follow:hover { color: #fff; }
+    .insta-feed {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+    .insta-cell {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .insta-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s var(--ease); }
+    .insta-cell:hover img { transform: scale(1.08); }
+    .insta-hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s var(--ease);
+    }
+    .insta-hover svg { opacity: 0; transition: opacity 0.3s; color: #fff; }
+    .insta-cell:hover .insta-hover { background: rgba(0,0,0,0.45); }
+    .insta-cell:hover .insta-hover svg { opacity: 1; }
+
+    /* ============================================================
+       NEWSLETTER
+    ============================================================ */
+    .newsletter { padding: 90px 0; background: var(--terracotta); position: relative; overflow: hidden; }
+    .newsletter::before {
+      content: 'Brunch';
+      position: absolute;
+      font-family: var(--font-script);
+      font-size: 18rem;
+      color: rgba(255,255,255,0.05);
+      right: -60px; top: -60px;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .newsletter-inner { text-align: center; position: relative; }
+    .newsletter-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .newsletter-sub { color: rgba(255,255,255,0.72); margin-bottom: 34px; font-size: 1rem; }
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+    .nl-input {
+      flex: 1;
+      padding: 14px 22px;
+      border-radius: 100px;
+      border: none;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      font-family: var(--font-sans);
+      transition: background 0.2s;
+    }
+    .nl-input::placeholder { color: rgba(255,255,255,0.5); }
+    .nl-input:focus { background: rgba(255,255,255,0.28); }
+    .nl-btn {
+      background: #fff;
+      color: var(--terracotta);
+      padding: 14px 26px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      letter-spacing: 0.04em;
+      transition: all 0.3s var(--ease);
+      white-space: nowrap;
+      font-family: var(--font-sans);
+    }
+    .nl-btn:hover { background: var(--dark); color: #fff; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer { background: var(--dark); color: rgba(255,255,255,0.5); padding: 70px 0 32px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 18px;
+    }
+    .footer-brand-logo img {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+    }
+    .footer-brand-name {
+      font-family: var(--font-script);
+      font-size: 1.5rem;
+      color: #fff;
+    }
+    .footer-brand p { font-size: 0.87rem; line-height: 1.75; max-width: 280px; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 22px; }
+    .soc {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.25s var(--ease);
+    }
+    .soc:hover { background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
+    .footer-col h4 {
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col ul a { font-size: 0.87rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    /* ============================================================
+       FLOATING BUTTONS
+    ============================================================ */
+    .floats {
+      position: fixed;
+      right: 22px; bottom: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .float-btn {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 22px rgba(0,0,0,0.22);
+      transition: all 0.3s var(--ease);
+      position: relative;
+    }
+    .float-btn:hover { transform: translateY(-4px) scale(1.07); box-shadow: 0 10px 36px rgba(0,0,0,0.28); }
+    .float-btn svg { width: 24px; height: 24px; fill: #fff; }
+    .float-wa { background: #25D366; }
+    .float-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .float-tip {
+      position: absolute;
+      right: calc(100% + 11px);
+      background: var(--dark);
+      color: #fff;
+      font-size: 0.73rem;
+      font-weight: 500;
+      padding: 5px 13px;
+      border-radius: 100px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      font-family: var(--font-sans);
+    }
+    .float-btn:hover .float-tip { opacity: 1; }
+
+    /* ============================================================
+       KEYFRAMES
+    ============================================================ */
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-22px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(22px)}  to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .about-grid, .find-us-grid { gap: 48px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .insta-feed { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .about-grid, .find-us-grid { grid-template-columns: 1fr; }
+      .about-img-float { display: none; }
+      .about-img-main { height: 360px; }
+
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
+
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .menu-grid { grid-template-columns: 1fr; }
+
+      .gallery-mosaic {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+      .g-item:nth-child(1), .g-item:nth-child(2), .g-item:nth-child(3),
+      .g-item:nth-child(4), .g-item:nth-child(5) {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        height: 200px;
+      }
+
+      .reviews-grid { grid-template-columns: 1fr; }
+      .insta-feed { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      .newsletter-form { flex-direction: column; }
+      .gallery-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .hero-actions { flex-direction: column; align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .insta-feed { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====================================================
+     NAVBAR
+==================================================== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#home" class="nav-brand">
+        <img src="assets/SaveClip.App_284997046_1066951690584945_5710602720004634898_n.jpg" alt="Brunch El Nido Logo">
+        <span class="nav-brand-name">Brunch El Nido</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#find-us">Find Us</a></li>
+        <li><a href="tel:09217145839" class="nav-cta">Reserve a Table</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#about"   onclick="closeDrawer()">About</a>
+  <a href="#menu"    onclick="closeDrawer()">Menu</a>
+  <a href="#gallery" onclick="closeDrawer()">Gallery</a>
+  <a href="#reviews" onclick="closeDrawer()">Reviews</a>
+  <a href="#find-us" onclick="closeDrawer()">Find Us</a>
+  <div class="mobile-drawer-contact">
+    <a href="tel:09217145839"                      onclick="closeDrawer()">📞 Call</a>
+    <a href="https://wa.me/639217145839" target="_blank" onclick="closeDrawer()">💬 WhatsApp</a>
+    <a href="https://www.instagram.com/brunch.elnido/" target="_blank" onclick="closeDrawer()">📸 Instagram</a>
+  </div>
+</div>
+
+<!-- ====================================================
+     HERO
+==================================================== -->
+<section class="hero" id="home">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="live-dot"></span>
+      Open Daily · El Nido, Palawan · Until 10 PM
+    </div>
+    <p class="hero-script">All Day Breakfast in Paradise</p>
+    <h1 class="hero-title">Brunch <span class="accent">El Nido</span></h1>
+    <p class="hero-sub">Sangrias &nbsp;·&nbsp; Mimosas &nbsp;·&nbsp; Good Vibes</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">
+        Explore the Menu
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#find-us" class="btn btn-outline-light">Get Directions</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-wire"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ====================================================
+     STATS BAR
+==================================================== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-val">4.7★</span>
+        <span class="stat-lbl">Google Rating</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">#1</span>
+        <span class="stat-lbl">Brunch in El Nido</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">500+</span>
+        <span class="stat-lbl">Happy Reviews</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">All Day</span>
+        <span class="stat-lbl">Breakfast Served</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================================================
+     ABOUT
+==================================================== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visuals reveal-left">
+        <div class="about-img-main">
+          <img src="assets/SaveClip.App_464681148_17980136210777075_7725377520029703684_n.jpg" alt="Brunch El Nido interior with tropical mural">
+        </div>
+        <div class="about-img-float">
+          <img src="assets/SaveClip.App_469599401_17985574724777075_3168501327457358384_n.jpg" alt="Signature smoothies">
+        </div>
+      </div>
+      <div class="about-text reveal-right">
+        <span class="label">Our Story</span>
+        <h2 class="headline">A Cool Escape in<br><em>the Heart of Paradise</em></h2>
+        <p class="lead">
+          Nestled on Rizal Street in El Nido, Palawan, Brunch El Nido is your island refuge — air-conditioned, beautifully mural-adorned, and brimming with the warm energy of Filipino hospitality. Whether you're fueling up before an island-hopping adventure or lingering over mimosas with friends, you're exactly where you're supposed to be.
+        </p>
+        <div class="perks">
+          <div class="perk">
+            <div class="perk-icon">❄️</div>
+            <div class="perk-text">
+              <strong>Air-Conditioned Comfort</strong>
+              <span>Your cool retreat from Palawan's tropical heat, with upstairs lounge seating.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">🎲</div>
+            <div class="perk-text">
+              <strong>Family-Friendly Vibes</strong>
+              <span>Board games, soft lighting and a welcoming space for all ages.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">📶</div>
+            <div class="perk-text">
+              <strong>Remote Work Ready</strong>
+              <span>Reliable Wi-Fi and endless coffee — your island co-working spot.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">🌱</div>
+            <div class="perk-text">
+              <strong>Inclusive Menu</strong>
+              <span>Vegan, vegetarian and international options for every palate.</span>
+            </div>
+          </div>
+        </div>
+        <a href="#find-us" class="btn btn-primary">Visit Us Today</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     FEATURES STRIP
+==================================================== -->
+<section class="features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feat reveal">
+        <div class="feat-icon">🥂</div>
+        <div class="feat-title">Sangrias & Mimosas</div>
+        <p class="feat-desc">Handcrafted cocktails and refreshing brunch drinks served all day long.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">🍳</div>
+        <div class="feat-title">All-Day Breakfast</div>
+        <p class="feat-desc">No matter the hour, your favorite brunch is always on the menu.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">🌴</div>
+        <div class="feat-title">Tropical Ambiance</div>
+        <p class="feat-desc">A stunning beach mural, lush plants, and laid-back island energy.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon">⭐</div>
+        <div class="feat-title">4.7 Star Experience</div>
+        <p class="feat-desc">Consistently rated one of El Nido's top restaurants on Google & TripAdvisor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     MENU
+==================================================== -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="menu-header">
+      <span class="label" style="color:rgba(255,255,255,0.35)">What We Serve</span>
+      <h2 class="headline" style="color:#fff">Crafted with <em style="color:var(--gold)">Love & Care</em></h2>
+      <p class="lead" style="color:rgba(255,255,255,0.45);text-align:center;margin:14px auto 0">International brunch favorites and Filipino comfort classics, made fresh every day.</p>
+    </div>
+    <div class="menu-tabs">
+      <button class="tab active">All</button>
+      <button class="tab">Breakfast</button>
+      <button class="tab">Mains</button>
+      <button class="tab">Drinks</button>
+      <button class="tab">Healthy</button>
+    </div>
+    <div class="menu-grid reveal">
+      <div class="menu-card">
+        <div class="menu-card-img">
+          <img src="assets/SaveClip.App_560905993_18022747067777075_5591115371378994553_n.jpg" alt="Eggs Benedict">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-tag">Breakfast · Signature</div>
+          <div class="menu-name">Eggs Benedict</div>
+          <p class="menu-desc">Poached eggs & smoked salmon on a toasted English muffin, topped with velvety hollandaise and fresh herb salad.</p>
+          <div class="menu-footer">
+            <span class="menu-price">₱ 320</span>
+            <span class="menu-badge">⭐ Fan Favorite</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-img">
+          <img src="assets/SaveClip.App_563810400_18023132045777075_1031239221011759333_n.jpg" alt="Lox Bagel">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-tag">Breakfast · International</div>
+          <div class="menu-name">Lox Bagel</div>
+          <p class="menu-desc">California-style bagel loaded with lox, cream cheese, capers, red onion, paprika & fresh salad. Comes with lemon wedges.</p>
+          <div class="menu-footer">
+            <span class="menu-price">₱ 295</span>
+            <span class="menu-badge">🐟 Bestseller</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-img">
+          <img src="assets/SaveClip.App_565020518_18023132216777075_1673080939536833496_n.jpg" alt="Filipino Breakfast">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-tag">Breakfast · Filipino</div>
+          <div class="menu-name">Filipino Breakfast</div>
+          <p class="menu-desc">Garlic fried rice, crispy Spam, sunny-side egg garnished with paprika & spring onion, served with fresh tomato, cucumber & banana.</p>
+          <div class="menu-footer">
+            <span class="menu-price">₱ 250</span>
+            <span class="menu-badge">🇵🇭 Local Love</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-img">
+          <img src="assets/SaveClip.App_562907656_18023132225777075_6884174845977621377_n.jpg" alt="Tropical Granola Bowl">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-tag">Healthy · Vegan</div>
+          <div class="menu-name">Tropical Granola Bowl</div>
+          <p class="menu-desc">Served in a real coconut shell — house-made granola, sliced almonds, chia seeds, goji berries, tropical fruits & coconut milk.</p>
+          <div class="menu-footer">
+            <span class="menu-price">₱ 220</span>
+            <span class="menu-badge">🌱 Vegan</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-img">
+          <img src="assets/SaveClip.App_469599401_17985574724777075_3168501327457358384_n.jpg" alt="Smoothie Flight">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-tag">Drinks · Signature</div>
+          <div class="menu-name">Smoothie Flight</div>
+          <p class="menu-desc">A trio of house-made smoothies — strawberry, caramel latte & matcha — served in mason jars on a wooden board.</p>
+          <div class="menu-footer">
+            <span class="menu-price">₱ 280</span>
+            <span class="menu-badge">🥤 Refreshing</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-img">
+          <img src="assets/SaveClip.App_568745332_18024127322777075_6528648770689178090_n.jpg" alt="Caramel Coffee Shake">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-tag">Drinks · Coffee</div>
+          <div class="menu-name">Caramel Coffee Shake</div>
+          <p class="menu-desc">Blended Vietnamese-style coffee with rich caramel, topped with whipped cream and served with a glass straw.</p>
+          <div class="menu-footer">
+            <span class="menu-price">₱ 195</span>
+            <span class="menu-badge">☕ House Special</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-cta">
+      <a href="tel:09217145839" class="btn btn-ghost-light">
+        Call to Ask About Today's Specials
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     GALLERY
+==================================================== -->
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <div class="gallery-head">
+      <div>
+        <span class="label">Instagram Worthy</span>
+        <h2 class="headline">From Our <em>Table</em></h2>
+      </div>
+      <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="gallery-ig-link">
+        Follow @brunch.elnido
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="gallery-mosaic reveal">
+      <div class="g-item" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_560905993_18022747067777075_5591115371378994553_n.jpg" alt="Eggs Benedict">
+      </div>
+      <div class="g-item" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_464681148_17980136210777075_7725377520029703684_n.jpg" alt="Interior mural">
+      </div>
+      <div class="g-item" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_563810400_18023132045777075_1031239221011759333_n.jpg" alt="Lox Bagel">
+      </div>
+      <div class="g-item" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_562907656_18023132225777075_6884174845977621377_n.jpg" alt="Granola Bowl">
+      </div>
+      <div class="g-item" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_565020518_18023132216777075_1673080939536833496_n.jpg" alt="Filipino Breakfast">
+      </div>
+    </div>
+
+    <!-- Second row -->
+    <div class="gallery-mosaic reveal" style="margin-top:14px; grid-template-rows:240px;">
+      <div class="g-item" style="grid-column:span 3; grid-row:span 1;" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_469599401_17985574724777075_3168501327457358384_n.jpg" alt="Smoothie trio">
+      </div>
+      <div class="g-item" style="grid-column:span 3; grid-row:span 1;" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_546424636_810892198053541_1627556149676992223_n.jpg" alt="All day breakfast">
+      </div>
+      <div class="g-item" style="grid-column:span 3; grid-row:span 1;" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_568745332_18024127322777075_6528648770689178090_n.jpg" alt="Coffee shake">
+      </div>
+      <div class="g-item" style="grid-column:span 3; grid-row:span 1;" onclick="openLb(this)">
+        <img src="assets/SaveClip.App_568433211_18024127331777075_2358814594324839268_n.jpg" alt="Gallery item">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLb()">
+  <span class="lb-close">✕</span>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<!-- ====================================================
+     REVIEWS
+==================================================== -->
+<section class="reviews-section" id="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <span class="label">What Guests Say</span>
+      <h2 class="headline">Loved by <em>Thousands</em></h2>
+      <p class="lead" style="text-align:center;margin:14px auto 0;">From Palawan locals to international travelers — here's what keeps them coming back.</p>
+      <div class="rating-row">
+        <span class="rating-big">4.7</span>
+        <div>
+          <div class="stars-row">★★★★★</div>
+          <div class="rating-count">Based on 500+ Google Reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid reveal">
+
+      <div class="review-card">
+        <div class="review-bigq">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Absolutely one of the best brunch spots I've ever been to! The Eggs Benedict were perfectly cooked and the hollandaise divine. Great vibes, amazing air-conditioning, and the staff were so warm and attentive. A must-visit in El Nido!</p>
+        <div class="review-foot">
+          <div class="review-av" style="background:#FFE0E0;color:#C07A58;">S</div>
+          <div>
+            <div class="review-name">Sarah M.</div>
+            <div class="review-meta">
+              <span>🇦🇺 Australia</span><span>·</span>
+              <span class="g-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google Review
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-bigq">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">We stumbled upon this gem while exploring El Nido and it became our daily breakfast spot. The lox bagel was incredible and the smoothies so fresh! Love the tropical mural and the chill atmosphere. Highly recommend to everyone visiting Palawan!</p>
+        <div class="review-foot">
+          <div class="review-av" style="background:#DFF0FF;color:#1565C0;">J</div>
+          <div>
+            <div class="review-name">James & Lily R.</div>
+            <div class="review-meta">
+              <span>🇬🇧 United Kingdom</span><span>·</span>
+              <span class="g-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google Review
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-bigq">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">The Filipino breakfast took me right back to home! Perfectly done garlic rice, crispy Spam and that banana touch — so nostalgic. The granola bowl in a coconut shell was gorgeous too. Staff was super friendly and attentive. Will 100% be back!</p>
+        <div class="review-foot">
+          <div class="review-av" style="background:#FFF3E0;color:#E65100;">M</div>
+          <div>
+            <div class="review-name">Maria C.</div>
+            <div class="review-meta">
+              <span>🇵🇭 Manila</span><span>·</span>
+              <span class="g-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google Review
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-bigq">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Best café in El Nido, hands down! We came for the mimosas and stayed for the food. The waffles are incredible and the upstairs lounge is so cozy — we spent the whole afternoon playing board games. Truly a magical spot in paradise!</p>
+        <div class="review-foot">
+          <div class="review-av" style="background:#F3E5F5;color:#7B1FA2;">A</div>
+          <div>
+            <div class="review-name">Alex T.</div>
+            <div class="review-meta">
+              <span>🇺🇸 California</span><span>·</span>
+              <span class="g-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google Review
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-bigq">"</div>
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">Great value for money — the food quality is seriously impressive for a café in El Nido. The coffee shake is an absolute must-try; I had one every morning during my whole trip. Consistent quality, clean space, and the staff always remembers your order!</p>
+        <div class="review-foot">
+          <div class="review-av" style="background:#E8F5E9;color:#2E7D32;">K</div>
+          <div>
+            <div class="review-name">Kai N.</div>
+            <div class="review-meta">
+              <span>🇩🇪 Germany</span><span>·</span>
+              <span class="g-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google Review
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-bigq">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">This place has it all — great food, amazing drinks, beautiful atmosphere. We came for a quick breakfast and left two hours later completely satisfied. Portions are generous, plating is beautiful. A true hidden gem in paradise! Book this before everyone else does.</p>
+        <div class="review-foot">
+          <div class="review-av" style="background:#FFF8E1;color:#F57F17;">R</div>
+          <div>
+            <div class="review-name">Rachel & Tom B.</div>
+            <div class="review-meta">
+              <span>🇨🇦 Canada</span><span>·</span>
+              <span class="g-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google Review
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     FIND US
+==================================================== -->
+<section class="find-us" id="find-us">
+  <div class="container">
+    <div class="find-us-grid">
+      <div class="find-us-info reveal-left">
+        <span class="label">Come Say Hello</span>
+        <h2 class="headline">Find Us in <em>El Nido</em></h2>
+        <p class="lead">We're right on Rizal Street — the main strip of El Nido town proper. Impossible to miss, and impossible to forget.</p>
+        <div class="contact-list">
+          <div class="contact-row">
+            <div class="c-icon">📍</div>
+            <div class="c-detail">
+              <strong>Address</strong>
+              <span>Unit-H Rizal St, El Nido<br>5313 Palawan, Philippines</span>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="c-icon">📞</div>
+            <div class="c-detail">
+              <strong>Phone / WhatsApp</strong>
+              <a href="tel:09217145839">0921 714 5839</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="c-icon">📸</div>
+            <div class="c-detail">
+              <strong>Instagram</strong>
+              <a href="https://www.instagram.com/brunch.elnido/" target="_blank">@brunch.elnido</a>
+            </div>
+          </div>
+        </div>
+        <div class="hours-box">
+          <div class="hours-heading">🕐 Opening Hours</div>
+          <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">7:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span class="day">Saturday</span>       <span class="time">7:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span class="day">Sunday</span>          <span class="time">7:00 AM – 10:00 PM</span></div>
+          <div class="open-pill"><span class="dot"></span>Open Every Day</div>
+        </div>
+      </div>
+      <div class="map-wrap reveal-right">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.123!2d119.4083!3d11.1831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a52bde41bfc08b%3A0xb8dfef57f4474a7e!2sBrunch%20El%20Nido!5e0!3m2!1sen!2sph!4v1715000000000!5m2!1sen!2sph"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Brunch El Nido on Google Maps">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     INSTAGRAM STRIP
+==================================================== -->
+<section class="insta-section">
+  <div class="container">
+    <div class="insta-hd">
+      <span class="label" style="color:rgba(255,255,255,0.3)">Follow Along</span>
+      <h2 class="headline" style="color:#fff">@brunch.elnido</h2>
+      <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="insta-follow">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Follow us on Instagram for daily food content
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="insta-feed reveal">
+      <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="insta-cell">
+        <img src="assets/SaveClip.App_560905993_18022747067777075_5591115371378994553_n.jpg" alt="">
+        <div class="insta-hover"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="insta-cell">
+        <img src="assets/SaveClip.App_563810400_18023132045777075_1031239221011759333_n.jpg" alt="">
+        <div class="insta-hover"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="insta-cell">
+        <img src="assets/SaveClip.App_565020518_18023132216777075_1673080939536833496_n.jpg" alt="">
+        <div class="insta-hover"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="insta-cell">
+        <img src="assets/SaveClip.App_562907656_18023132225777075_6884174845977621377_n.jpg" alt="">
+        <div class="insta-hover"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="insta-cell">
+        <img src="assets/SaveClip.App_469599401_17985574724777075_3168501327457358384_n.jpg" alt="">
+        <div class="insta-hover"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+      <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="insta-cell">
+        <img src="assets/SaveClip.App_546424636_810892198053541_1627556149676992223_n.jpg" alt="">
+        <div class="insta-hover"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     NEWSLETTER
+==================================================== -->
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter-inner">
+      <h2 class="newsletter-title">Stay in the Loop 🌴</h2>
+      <p class="newsletter-sub">Get exclusive deals, new menu drops & El Nido travel tips straight to your inbox.</p>
+      <form class="newsletter-form" onsubmit="handleNl(event)">
+        <input type="email" class="nl-input" placeholder="your@email.com" required>
+        <button type="submit" class="nl-btn">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     FOOTER
+==================================================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <img src="assets/SaveClip.App_284997046_1066951690584945_5710602720004634898_n.jpg" alt="Brunch El Nido">
+          <span class="footer-brand-name">Brunch El Nido</span>
+        </div>
+        <p>Your favorite all-day brunch spot in the heart of El Nido, Palawan. Sangrias, mimosas & comfort food done right — every single day.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="soc" aria-label="Instagram">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://wa.me/639217145839" target="_blank" class="soc" aria-label="WhatsApp">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://maps.google.com/?q=Brunch+El+Nido+Palawan+Philippines" target="_blank" class="soc" aria-label="Google Maps">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#find-us">Find Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#menu">Breakfast</a></li>
+          <li><a href="#menu">Brunch Mains</a></li>
+          <li><a href="#menu">Drinks & Smoothies</a></li>
+          <li><a href="#menu">Sangrias & Mimosas</a></li>
+          <li><a href="#menu">Healthy Bowls</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:09217145839">0921 714 5839</a></li>
+          <li><a href="https://wa.me/639217145839" target="_blank">WhatsApp Us</a></li>
+          <li><a href="https://www.instagram.com/brunch.elnido/" target="_blank">@brunch.elnido</a></li>
+          <li><a href="https://maps.google.com/?q=Brunch+El+Nido" target="_blank">Get Directions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Brunch El Nido · Unit-H Rizal St, El Nido, 5313 Palawan, Philippines</span>
+      <span>Made with ❤️ in Paradise</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ====================================================
+     FLOATING BUTTONS
+==================================================== -->
+<div class="floats">
+  <a href="https://www.instagram.com/brunch.elnido/" target="_blank" class="float-btn float-ig" aria-label="Follow on Instagram">
+    <span class="float-tip">Follow on Instagram</span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+  </a>
+  <a href="https://wa.me/639217145839?text=Hi%20Brunch%20El%20Nido!%20I%27d%20like%20to%20make%20a%20reservation." target="_blank" class="float-btn float-wa" aria-label="Chat on WhatsApp">
+    <span class="float-tip">Chat on WhatsApp</span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- ====================================================
+     JAVASCRIPT
+==================================================== -->
+<script>
+  // ── Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 70);
+  }, { passive: true });
+
+  // ── Hero zoom-in
+  window.addEventListener('load', () => {
+    document.getElementById('heroBg').classList.add('loaded');
+  });
+
+  // ── Hero parallax
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight) {
+      document.getElementById('heroBg').style.transform = `scale(1) translateY(${y * 0.28}px)`;
+    }
+  }, { passive: true });
+
+  // ── Hamburger / mobile drawer
+  const ham = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobileDrawer');
+  ham.addEventListener('click', () => {
+    const open = drawer.classList.toggle('open');
+    ham.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    ham.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  // ── Lightbox
+  function openLb(el) {
+    const img = el.querySelector('img');
+    document.getElementById('lbImg').src = img.src;
+    document.getElementById('lbImg').alt = img.alt;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  // ── Menu tabs (visual toggle)
+  document.querySelectorAll('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+    });
+  });
+
+  // ── Newsletter
+  function handleNl(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    const input = e.target.querySelector('input');
+    btn.textContent = '🎉 You\'re in!';
+    btn.style.background = '#4CAF50';
+    btn.style.color = '#fff';
+    input.value = '';
+    setTimeout(() => {
+      btn.textContent = 'Subscribe';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3500);
+  }
+</script>
+
+</body>
+</html>
